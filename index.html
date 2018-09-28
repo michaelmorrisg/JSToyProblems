@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <textarea id="text"></textarea>
+    <button onclick="count()">Press Me</button>
+    
+    <div id="analysis"></div>
+
+
+    <script>
+
+        function count(){
+            lettersArr = {}
+            answer = document.getElementById("text").value
+            answer = answer.split('')
+            for(let i = 0; i < answer.length; i ++){
+                if(lettersArr[answer[i]]){
+                    lettersArr[answer[i]] += 1
+                } else{
+                    lettersArr[answer[i]] = 1
+                }
+            }
+            var answer = Object.entries(lettersArr)
+            // console.log(answer)
+            document.getElementById("analysis").innerHTML = answer.map(letters =>{
+                // console.log(letters[0] + letters[1])
+                return letters[0] + "=" + letters[1]
+            })
+        }
+    
+    </script>
+</body>
+</html>
