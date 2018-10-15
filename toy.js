@@ -44,3 +44,24 @@ function bubbleSort(nums){
   bubbleSort([2,1,10,5,8,3,4])
 
   ////
+
+  //Insertion Sort
+
+  function insertionSort(nums){
+    //Outer loop starts outside the 'sorted' part of the array
+    for(let i = 1; i < nums.length; i++){
+      //inner loop starts at 0 and then just compares the 'sorted' part of the array
+      //to the num at index i to see where it should insert index i's value
+      for(let j = 0; j < i; j++){
+        if(nums[i] < nums[j]){
+          let spliced = nums.splice(i,1)
+          nums.splice(j,0,spliced[0])
+        }
+      }
+    }
+    return nums
+  }
+  
+  insertionSort([100,4,3,6,8,10,2,1])
+
+  //////
