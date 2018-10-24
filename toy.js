@@ -65,3 +65,25 @@ function bubbleSort(nums){
   insertionSort([100,4,3,6,8,10,2,1])
 
   //////
+
+  //Closure
+
+function mainFunction(array){
+  let i =0
+  function inner(){
+    const element = array[i]
+    i ++
+    return element
+  }
+  return inner
+}
+
+const letsLog = mainFunction([1,2,3,4,5])
+
+const first = letsLog()
+console.log(first)
+
+const second = letsLog()
+console.log(second)
+
+////
