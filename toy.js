@@ -87,3 +87,68 @@ const second = letsLog()
 console.log(second)
 
 ////
+
+//6X6 array -- need to t or f if every column's numbers have same divisor and if every row's numbers have the same divisor
+
+var example1 = [
+  [33,33,33,33,33,32],
+  [33,33,33,33,33,33],
+  [66,66,66,66,66,66],
+  [33,33,33,33,33,33],
+  [66,66,66,66,66,66],
+  [99,99,99,99,99,99]
+]
+var example2 = [
+  [10,33,33,10,33,33],
+  [33,33,33,33,33,33],
+  [66,66,66,66,66,66],
+  [33,33,33,33,67,33],
+  [34,66,12,66,66,66],
+  [99,99,99,45,99,99]
+]
+
+function solveSudoku(arr){
+  let columnTotal = []
+  let rowTotal = []
+  //Column Test
+  for(let i = 0; i < arr.length; i++){
+    let tempArr = []
+    //turns columns into rows for ease of working
+    for(let j = 0; j < arr[i].length; j++){
+      tempArr.push(arr[j][i])
+    }
+    //Finds common divisor from 2 to smallest number in column (now row)
+    for(let k = 2; k <= Math.min(...tempArr); k++){
+      let newArr = tempArr.filter(num => {
+        return num % k === 0
+      })
+      //If it finds a common divisor it pushes to column total and exits the loop
+      if(newArr.length === 6){
+        columnTotal.push('passes')
+        break
+      }
+    }
+  }
+  //Row Test
+  for(let i = 0; i < arr.length; i ++){
+    for(let k = 2; k <=Math.min(...arr[i]); k++){
+      let newArr = arr[i].filter(num => {
+        return num % k === 0
+      })
+      if(newArr.length === 6){
+        rowTotal.push('passes')
+        break
+      }
+    }
+  }
+  //if the lengths are both 6, the loop found a common divisor in every row and column
+  if(rowTotal.length === 6 && columnTotal.length === 6){
+      return true
+  } else {
+    return false
+  }
+
+}
+
+solveSudoku(example1)
+// solveSudoku(example2)
